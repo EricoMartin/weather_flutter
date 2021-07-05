@@ -2,7 +2,7 @@
 
 A Flutter weather application.
 
-<img src="screenshot.png"/>
+<img src="Screenshot.png"/>
 
 ## Getting Started
 
