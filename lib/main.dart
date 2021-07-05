@@ -3,31 +3,25 @@ import 'package:http/http.dart' as http;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:convert';
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(
+  title: 'Weather App',
+  theme: ThemeData(
+    // This is the theme of your application.
+    //
+    // Try running your application with "flutter run". You'll see the
+    // application has a blue toolbar. Then, without quitting the app, try
+    // changing the primarySwatch below to Colors.green and then invoke
+    // "hot reload" (press "r" in the console where you ran "flutter run",
+    // or simply save your changes to "hot reload" in a Flutter IDE).
+    // Notice that the counter didn't reset back to zero; the application
+    // is not restarted.
+  primarySwatch: Colors.blue,
+  ),
+  home: MyHomePage(title: 'Weather App'),
+  ));
 }
 
-class MyApp extends StatelessWidget {
 
-
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Weather App',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Weather App'),
-    );
-  }
-}
 
 class MyHomePage extends StatefulWidget {
 
@@ -56,9 +50,9 @@ class _MyHomePageState extends State<MyHomePage> {
   var wind;
 
   Future getWeather () async{
-    Uri uri = 'https://api.openweathermap.org/data/2.5/weather?q=abuja&appid=722f8452241fd8024bfeeaaa3eb998bc' as Uri;
+    var uri = Uri.parse('https://api.openweathermap.org/data/2.5/weather?q=abuja&appid=722f8452241fd8024bfeeaaa3eb998bc');
     http.Response res = await http.get(uri);
-    var ans = jsonDecode(res.body);
+    var ans = jsonDecode(res.body.toString());
     setState((){
       this.temp = ans['main']['temp'];
       this.desc = ans['weather'][0]['description'];
